@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
-  require 'sidekiq/web'
+  mount Rswag::Ui::Engine => "/api-docs"
+  mount Rswag::Api::Engine => "/api-docs"
+  require "sidekiq/web"
 
   scope :monitoring do
     # Sidekiq Basic Auth from routes on production environment
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
                                                       ::Digest::SHA256.hexdigest(Rails.application.credentials.sidekiq[:auth_password]))
       end
     end
-    mount Sidekiq::Web, at: '/sidekiq'
+    mount Sidekiq::Web, at: "/sidekiq"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         get :me
         post :create
       end
+      resources :blogs
     end
   end
 end
