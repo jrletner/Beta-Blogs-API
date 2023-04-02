@@ -1,7 +1,7 @@
 module Api
   module V1
     class BlogsController < Api::V1::ApplicationController
-      skip_before_action :authenticate, only: %i[home]
+      skip_before_action :authenticate, only: %i[home show]
 
       def create
         result = Blogs::Operations.new_blog(params, @current_user)
