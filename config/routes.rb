@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         post :create
         get :index
       end
+      namespace :blogs do
+        get :home
+      end
       resources :blogs
     end
   end

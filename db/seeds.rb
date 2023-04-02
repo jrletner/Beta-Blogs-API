@@ -25,8 +25,8 @@ Category.create(name: "Angular")
     paragraphs += Faker::Lorem.paragraph(sentence_count: 3) + "\n\n"
   end
 
-  blog = Blog.new(user_id: rand(0..9), title: faker_title, sub_title: fake_sub_title, content: paragraphs, image_path: "https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej.png")
+  blog = Blog.new(user_id: rand(1..10), title: faker_title, sub_title: fake_sub_title, content: paragraphs, image_path: "https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej.png")
 
-  blog.categories = Category.all.sample(rand(0..6))
+  blog.categories = Category.all.sample(rand(1..7))
   blog.save
 end
