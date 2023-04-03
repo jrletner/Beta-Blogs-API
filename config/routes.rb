@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post :create
         get :index
       end
+      get "/users/:username", to: "users#show", constraints: { username: /.*/ }
       namespace :blogs do
         get :home
       end

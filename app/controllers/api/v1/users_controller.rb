@@ -4,7 +4,7 @@ module Api
   module V1
     # Handles endpoints related to users
     class UsersController < Api::V1::ApplicationController
-      skip_before_action :authenticate, only: %i[index login create]
+      skip_before_action :authenticate, only: %i[index login create show]
 
       def index
         users = User.all
@@ -53,6 +53,12 @@ module Api
 
         render_error(errors: { validated: false, status: 401 }) and return if user.nil?
         render_success(payload: { validated: true, status: 200 })
+      end
+
+      def show
+        user = User.find_by(username: params[:username])
+
+        render_success(payload: { user: UserBlueprint.render_as_hash(user, view: :profile) })
       end
     end
   end
